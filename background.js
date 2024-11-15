@@ -1,7 +1,7 @@
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     const videoUrl = request.url;
     const videoTitle = request.title;
-
+    // console.log(videoTitle, videoUrl)
     chrome.downloads.download({
       url: videoUrl,
       filename: `${videoTitle}.mp4`,

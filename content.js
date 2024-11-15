@@ -1,11 +1,16 @@
 const videoElement = document.querySelector("video");
 
+function sanitizeFilename(name) {
+  return name.replace(/[/\\?%*:|"<>]/g, '-');
+}
+
 if (videoElement) {
   const videoUrl = videoElement.getAttribute("src");
 
   // Locate the video title
-  const titleElement = document.querySelector("h1.media-heading");
-  const videoTitle = titleElement ? titleElement.innerText.trim() : "lecture_video";
+  const titleElement  = document.querySelector('h1.media-heading');
+  let   videoTitle    = titleElement ? titleElement.innerText.trim() : 'lecture-video';
+  videoTitle          = sanitizeFilename(videoTitle);  // Sanitize the title
 
   // Create a "Download" button
   const downloadButton = document.createElement("button");
@@ -14,7 +19,7 @@ if (videoElement) {
   downloadButton.style.top = "10px";
   downloadButton.style.right = "10px";
   downloadButton.style.padding = "10px 20px";
-  downloadButton.style.backgroundColor = "#ff4500";
+  downloadButton.style.backgroundColor = "#4CAF50";
   downloadButton.style.color = "white";
   downloadButton.style.border = "none";
   downloadButton.style.borderRadius = "5px";
